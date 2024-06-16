@@ -5,12 +5,18 @@ import { Button } from "../../components/Button";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
 
-import { api } from "../../services/api";
+import api from "../../services/api";
 
 import { toast } from "react-toastify";
 
+import { useUser } from "../../hooks/UserContext";
+
 const Login = () => {
+  const { infoUser } = useUser();
+  const navigate = useNavigate();
+
   const schema = yup
     .object({
       email: yup
@@ -31,11 +37,11 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = async (data) => {
-    const response = await toast.promise(
+  const onSubmit = async (info) => {
+    const { data } = await toast.promise(
       api.post("/session", {
-        email: data.email,
-        password: data.password,
+        email: info.email,
+        password: info.password,
       }),
       {
         pending: "Verificando dados",
@@ -44,7 +50,8 @@ const Login = () => {
       }
     );
 
-    console.log(response);
+    infoUser(data);
+    navigate("/");
   };
 
   return (
