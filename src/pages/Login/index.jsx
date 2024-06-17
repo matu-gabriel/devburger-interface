@@ -78,7 +78,7 @@ const Login = () => {
           <Button type="submit">Entrar</Button>
         </Form>
         <p>
-          Não possui conta? <a href="#">Clique aqui</a>.
+          Não possui conta? <a href="/cadastro">Clique aqui</a>.
         </p>
       </RightBox>
     </Container>

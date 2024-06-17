@@ -14,14 +14,27 @@ const CategoryCarousel = () => {
     loadCategories();
   }, []);
 
+  console.log(categories);
+
+  const breakpoints = [
+    { width: 1, itemsToShow: 1 },
+    { width: 550, itemsToShow: 2, itemsToScroll: 2 },
+    { width: 850, itemsToShow: 3 },
+    { width: 1150, itemsToShow: 4, itemsToScroll: 2 },
+    { width: 1450, itemsToShow: 5 },
+    { width: 1750, itemsToShow: 6 },
+  ];
+
   return (
     <Container>
       <h1>CATEGORIAS</h1>
-      <Carousel itemsToShow={4} style={{ widht: "90%" }}>
+      <Carousel itemsToShow={4} breakPoints={breakpoints} itemPadding={[0, 30]}>
         {categories &&
           categories.map((category) => (
             <ContainerItems key={category.id}>
-              <Image src={category.url} alt="categoria" />
+              <Image src={category.url} />
+              <h2>{category.name}</h2>
+              <p>Hamburgueres, X-saladas, Misto-Quentes</p>
             </ContainerItems>
           ))}
       </Carousel>

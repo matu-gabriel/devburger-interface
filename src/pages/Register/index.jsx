@@ -93,7 +93,7 @@ const Register = () => {
           <Button type="submit">Cadastrar</Button>
         </Form>
         <p>
-          Já possui conta? <a href="#">Clique aqui</a>.
+          Já possui conta? <a href="/login">Clique aqui</a>.
         </p>
       </RightBox>
     </Container>
