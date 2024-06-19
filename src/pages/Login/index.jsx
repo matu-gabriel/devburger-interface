@@ -1,4 +1,12 @@
-import { Container, LeftBox, RightBox, Title, Form, InputBox } from "./styles";
+import {
+  Container,
+  LeftBox,
+  RightBox,
+  Title,
+  Form,
+  InputBox,
+  Link,
+} from "./styles";
 import Logo from "../../assets/Logo.svg";
 import { Button } from "../../components/Button";
 
@@ -45,13 +53,19 @@ const Login = () => {
       }),
       {
         pending: "Verificando dados",
-        success: "Seja bem-vindo(a)",
+        success: {
+          render() {
+            setTimeout(() => {
+              navigate("/");
+            }, 2000);
+            return "Seja bem-vindo(a)";
+          },
+        },
         error: "Email ou senha incorretos",
       }
     );
 
     infoUser(data);
-    navigate("/");
   };
 
   return (
@@ -78,7 +92,7 @@ const Login = () => {
           <Button type="submit">Entrar</Button>
         </Form>
         <p>
-          Não possui conta? <a href="/cadastro">Clique aqui</a>.
+          Não possui conta? <Link to="/cadastro">Clique aqui</Link>.
         </p>
       </RightBox>
     </Container>

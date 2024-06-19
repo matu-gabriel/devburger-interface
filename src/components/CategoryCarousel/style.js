@@ -1,16 +1,16 @@
 import styled from "styled-components";
-import Background from "../../assets/background.svg";
 
 export const Container = styled.div`
-  background: url("${Background}");
-  background-color: #e6e6e6;
-  background-size: cover;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 35px;
-  padding: 35px 20px;
+  padding: 28px 20px;
+
+  h1 {
+    color: rgba(151, 88, 166, 1);
+    font-weight: 800;
+  }
 
   .rec.rec-arrow {
     color: rgba(151, 88, 166, 1);

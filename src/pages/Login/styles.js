@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import BackgroundLogin from "../../assets/background-logo.svg";
 import Background from "../../assets/background.svg";
+import { Link as LinkReact } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
@@ -94,4 +95,8 @@ export const InputBox = styled.div`
     font-weight: 600;
     height: 10px;
   }
+`;
+
+export const Link = styled(LinkReact)`
+  text-decoration: none;
 `;
