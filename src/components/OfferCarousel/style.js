@@ -22,7 +22,7 @@ export const Container = styled.div`
 
 export const ContainerItems = styled.div`
   margin: 50px 0;
-  width: 100%;
+  width: max-content;
   max-width: 274px;
   min-height: 320px;
   background-color: rgba(255, 255, 255, 1);
@@ -51,6 +51,11 @@ export const Image = styled.img`
   padding: 10px 0;
   width: 148px;
   transform: rotate(18deg);
+  transition: 0.4s ease-in;
+
+  &:hover {
+    transform: scale(1.4);
+  }
 `;
 
 export const Teste = styled.div`
