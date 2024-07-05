@@ -5,11 +5,15 @@ import {
   HomeImg,
   CategoryButton,
   CategoriesContainer,
+  CategoryProducts,
 } from "./styles";
 import api from "../../services/api";
+import CardProduct from "../../components/CardProduct";
+import formatedCurrency from "../../utils/formatedCurrency";
 
 const Products = () => {
   const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
   const [active, setActive] = useState(0);
 
   useEffect(() => {
@@ -27,7 +31,14 @@ const Products = () => {
   useEffect(() => {
     const getProducts = async () => {
       const { data } = await api.get("products");
-      console.log(data);
+      const newData = data.map((formatCurrency) => {
+        return {
+          ...formatCurrency,
+          formatedPrice: formatedCurrency(formatCurrency.price),
+        };
+      });
+      console.log(newData);
+      setProducts(newData);
     };
 
     getProducts();
@@ -49,6 +60,12 @@ const Products = () => {
             </CategoryButton>
           ))}
       </CategoriesContainer>
+      <CategoryProducts>
+        {products &&
+          products.map((product) => (
+            <CardProduct key={product.id} product={product} />
+          ))}
+      </CategoryProducts>
     </Container>
   );
 };
