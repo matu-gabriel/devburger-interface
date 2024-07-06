@@ -12,7 +12,7 @@ import Carousel from "react-elastic-carousel";
 import api from "../../services/api";
 import formatedCurrency from "../../utils/formatedCurrency";
 
-const OfferCarousel = () => {
+export const OfferCarousel = () => {
   const [offers, setoffers] = useState([]);
 
   useEffect(() => {
@@ -30,8 +30,6 @@ const OfferCarousel = () => {
     };
     loadCategories();
   }, []);
-
-  console.log(offers);
 
   const breakpoints = [
     { width: 1, itemsToShow: 1 },
@@ -65,5 +63,3 @@ const OfferCarousel = () => {
     </Container>
   );
 };
-
-export default OfferCarousel;

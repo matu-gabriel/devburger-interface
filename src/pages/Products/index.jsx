@@ -8,12 +8,13 @@ import {
   CategoryProducts,
 } from "./styles";
 import api from "../../services/api";
-import CardProduct from "../../components/CardProduct";
+import { CardProduct } from "../../components";
 import formatedCurrency from "../../utils/formatedCurrency";
 
-const Products = () => {
+export const Products = () => {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [active, setActive] = useState(0);
 
   useEffect(() => {
@@ -37,12 +38,22 @@ const Products = () => {
           formatedPrice: formatedCurrency(formatCurrency.price),
         };
       });
-      console.log(newData);
       setProducts(newData);
     };
 
     getProducts();
   }, []);
+
+  useEffect(() => {
+    if (active === 0) {
+      setFilteredProducts(products);
+    } else {
+      const newFiltered = products.filter(
+        (product) => product.category_id === active
+      );
+      setFilteredProducts(newFiltered);
+    }
+  }, [active, products]);
 
   return (
     <Container>
@@ -61,13 +72,11 @@ const Products = () => {
           ))}
       </CategoriesContainer>
       <CategoryProducts>
-        {products &&
-          products.map((product) => (
+        {filteredProducts &&
+          filteredProducts.map((product) => (
             <CardProduct key={product.id} product={product} />
           ))}
       </CategoryProducts>
     </Container>
   );
 };
-
-export default Products;

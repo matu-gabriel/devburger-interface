@@ -8,7 +8,11 @@ import {
   ProductDescription,
 } from "./style";
 
+import { useCart } from "../../hooks/CartContex";
+
 export const CardProduct = ({ product }) => {
+  const { putProductInCart } = useCart();
+
   return (
     <Container>
       <Image src={product.url} alt="" />
@@ -20,10 +24,8 @@ export const CardProduct = ({ product }) => {
           quisquam ipsum dolorem
         </ProductDescription>
         <ProductPrice>{product.formatedPrice}</ProductPrice>
-        <Button>Adicionar</Button>
+        <Button onClick={() => putProductInCart(product)}>Adicionar</Button>
       </div>
     </Container>
   );
 };
-
-export default CardProduct;

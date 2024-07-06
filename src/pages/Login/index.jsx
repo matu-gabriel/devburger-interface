@@ -8,7 +8,7 @@ import {
   Link,
 } from "./styles";
 import Logo from "../../assets/Logo.svg";
-import { Button } from "../../components/Button";
+import { Button } from "../../components";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -21,7 +21,7 @@ import { toast } from "react-toastify";
 
 import { useUser } from "../../hooks/UserContext";
 
-const Login = () => {
+export const Login = () => {
   const { infoUser } = useUser();
   const navigate = useNavigate();
 
@@ -98,5 +98,3 @@ const Login = () => {
     </Container>
   );
 };
-
-export default Login;

@@ -8,7 +8,7 @@ import {
   Link,
 } from "./styles";
 import Logo from "../../assets/Logo.svg";
-import { Button } from "../../components/Button";
+import { Button } from "../../components";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -20,7 +20,7 @@ import { toast } from "react-toastify";
 
 import { useNavigate } from "react-router-dom";
 
-const Register = () => {
+export const Register = () => {
   const navigate = useNavigate();
 
   const schema = yup
@@ -114,5 +114,3 @@ const Register = () => {
     </Container>
   );
 };
-
-export default Register;
