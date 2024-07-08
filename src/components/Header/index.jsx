@@ -1,12 +1,18 @@
 import { Container, ContainerLeft, ContainerRight, StyledLink } from "./style";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import ReceiptLongOutlinedIcon from "@mui/icons-material/ReceiptLongOutlined";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useUser } from "../../hooks/UserContext";
 
 export const Header = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useUser();
 
-  console.log(pathname);
+  const logoutUser = () => {
+    logout();
+    navigate("/login");
+  };
 
   return (
     <Container>
@@ -26,7 +32,9 @@ export const Header = () => {
           <PersonOutlineOutlinedIcon color="secondary" fontSize="large" />
           <div>
             <p>Olá, Matu</p>
-            <Link style={{ color: "red" }}>Sair</Link>
+            <Link style={{ color: "red" }} onClick={logoutUser}>
+              Sair
+            </Link>
           </div>
         </div>
         <div className="order">
