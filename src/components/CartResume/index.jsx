@@ -7,7 +7,7 @@ import api from "../../services/api";
 import { toast } from "react-toastify";
 
 export const CartResume = () => {
-  const { cartProducts } = useCart();
+  const { cartProducts, clearCart } = useCart();
 
   const [finalPrice, setFinalPrice] = useState(0);
   const [priceTax] = useState(5);
@@ -25,13 +25,16 @@ export const CartResume = () => {
       return { id: product.id, quantity: product.quantity };
     });
 
-    console.log(order);
-
     await toast.promise(api.post("orders", { products: order }), {
       pending: "Realizando seu pedido",
       success: "Pedido realizado com sucesso",
       error: "Falha ao realizar seu pedido, tente novamente",
     });
+  };
+
+  const handleClick = async () => {
+    await submitOrder();
+    clearCart();
   };
 
   return (
@@ -49,7 +52,7 @@ export const CartResume = () => {
           <p>{formatedCurrency(finalPrice + priceTax)}</p>
         </ResumeBottom>
       </Container>
-      <Button onClick={submitOrder}>Continuar</Button>
+      <Button onClick={handleClick}>Continuar</Button>
     </div>
   );
 };

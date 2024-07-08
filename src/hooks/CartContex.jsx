@@ -10,6 +10,11 @@ export const CartProvider = ({ children }) => {
     await localStorage.setItem("devburger:cartInfo", JSON.stringify(products));
   };
 
+  const clearCart = async () => {
+    await localStorage.removeItem("devburger:cartInfo");
+    setCartProducts([]);
+  };
+
   const putProductInCart = async (product) => {
     const cartIndex = cartProducts.findIndex((prd) => prd.id === product.id);
 
@@ -81,6 +86,7 @@ export const CartProvider = ({ children }) => {
         putProductInCart,
         increaseQuantity,
         decreaseQuantity,
+        clearCart,
       }}
     >
       {children}
