@@ -9,9 +9,11 @@ import {
 } from "./style";
 
 import { useCart } from "../../hooks/CartContex";
+import { useNavigate } from "react-router-dom";
 
 export const CardProduct = ({ product }) => {
   const { putProductInCart } = useCart();
+  const navigate = useNavigate();
 
   return (
     <Container>
@@ -24,7 +26,13 @@ export const CardProduct = ({ product }) => {
           quisquam ipsum dolorem
         </ProductDescription>
         <ProductPrice>{product.formatedPrice}</ProductPrice>
-        <Button onClick={() => putProductInCart(product)}>Adicionar</Button>
+        <Button
+          onClick={() => {
+            putProductInCart(product), navigate("/carrinho");
+          }}
+        >
+          Adicionar
+        </Button>
       </div>
     </Container>
   );

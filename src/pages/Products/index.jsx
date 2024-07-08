@@ -10,12 +10,21 @@ import {
 import api from "../../services/api";
 import { CardProduct } from "../../components";
 import formatedCurrency from "../../utils/formatedCurrency";
+import { useLocation } from "react-router-dom";
 
 export const Products = () => {
+  const location = useLocation();
+  const categoryId = location.state?.categoryId;
+
+  let category = 0;
+  if (categoryId) {
+    category = categoryId;
+  }
+
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(category);
 
   useEffect(() => {
     const getCategories = async () => {

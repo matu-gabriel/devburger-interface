@@ -29,7 +29,11 @@ export const CategoryCarousel = () => {
       <Carousel itemsToShow={4} breakPoints={breakpoints} itemPadding={[0, 30]}>
         {categories &&
           categories.map((category) => (
-            <ContainerItems key={category.id}>
+            <ContainerItems
+              key={category.id}
+              to="/produtos"
+              state={{ categoryId: category.id }}
+            >
               <Image src={category.url} />
               <h2>{category.name}</h2>
               <p>Hamburgueres, X-saladas, Misto-Quentes</p>
