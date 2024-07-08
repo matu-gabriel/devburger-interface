@@ -1,6 +1,7 @@
 import { Container, HeaderItems, BodyItems, EmptyCart } from "./style";
 import { useCart } from "../../hooks/CartContex";
 import formatedCurrency from "../../utils/formatedCurrency";
+import { Link } from "react-router-dom";
 
 export const CartItems = () => {
   const { cartProducts, increaseQuantity, decreaseQuantity } = useCart();
@@ -31,6 +32,7 @@ export const CartItems = () => {
       ) : (
         <EmptyCart>Carrinho vazio</EmptyCart>
       )}
+      <Link to="/produtos">Adicionar produtos</Link>
     </Container>
   );
 };

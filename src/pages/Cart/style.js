@@ -20,4 +20,10 @@ export const Title = styled.h1`
   padding: 25px 0;
 `;
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  display: flex;
+  padding: 0 20px;
+  justify-content: space-evenly;
+  gap: 50px;
+  width: 100%;
+`;

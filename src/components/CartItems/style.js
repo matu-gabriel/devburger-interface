@@ -1,10 +1,17 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  margin: 0 auto;
   background-color: #fff;
   border-radius: 21px;
-  width: max-content;
+  width: 65%;
+  height: max-content;
+
+  a {
+    color: rgba(92, 38, 105, 1);
+    font-size: 18px;
+    padding: 10px 50px;
+    float: right;
+  }
 `;
 export const HeaderItems = styled.div`
   display: grid;
