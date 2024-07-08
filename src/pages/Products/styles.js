@@ -6,7 +6,7 @@ export const Container = styled.div`
   background-color: #0f0f0f;
   background-size: cover;
   background-position: center;
-  min-height: 100vh;
+  min-height: calc(100vh - 69px);
 `;
 
 export const HomeImg = styled.img`

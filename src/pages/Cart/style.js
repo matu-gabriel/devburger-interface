@@ -5,7 +5,7 @@ export const Container = styled.div`
   background: url("${Background}");
   background-color: #0f0f0f;
   background-size: cover;
-  min-height: 100vh;
+  min-height: calc(100vh - 69px);
 `;
 
 export const Image = styled.img`

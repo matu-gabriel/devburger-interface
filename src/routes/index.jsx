@@ -4,6 +4,7 @@ import { Login, Register, Home, Products, Cart } from "../pages";
 
 import ErrorPage from "./ErrorPage";
 import PrivateRouter from "./PrivateRoute";
+import { Header } from "../components";
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ export const router = createBrowserRouter([
     path: "/",
     element: (
       <PrivateRouter>
+        <Header />
         <Home />
       </PrivateRouter>
     ),
@@ -27,6 +29,7 @@ export const router = createBrowserRouter([
     path: "/produtos",
     element: (
       <PrivateRouter>
+        <Header />
         <Products />
       </PrivateRouter>
     ),
@@ -35,6 +38,7 @@ export const router = createBrowserRouter([
     path: "/carrinho",
     element: (
       <PrivateRouter>
+        <Header />
         <Cart />
       </PrivateRouter>
     ),
