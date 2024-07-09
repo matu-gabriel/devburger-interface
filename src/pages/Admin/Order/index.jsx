@@ -11,6 +11,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 import Row from "./row";
+import formatedDate from "../../../utils/formatedDate";
 
 const Order = () => {
   const [orders, setOrders] = useState([]);
@@ -29,7 +30,7 @@ const Order = () => {
     return {
       orderId: order._id,
       name: order.user.name,
-      date: order.createdAt,
+      date: formatedDate(order.createdAt),
       status: order.status,
       products: order.products,
     };

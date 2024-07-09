@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useState } from "react";
+import { ProductImage } from "./style";
 
 const Row = ({ row }) => {
   const [open, setOpen] = useState(false);
@@ -59,7 +60,10 @@ const Row = ({ row }) => {
                       <TableCell>{productRow.name}</TableCell>
                       <TableCell>{productRow.category}</TableCell>
                       <TableCell>
-                        <img src={productRow.url} alt="imagem-do-produto" />
+                        <ProductImage
+                          src={productRow.url}
+                          alt="imagem-do-produto"
+                        />
                       </TableCell>
                     </TableRow>
                   ))}
