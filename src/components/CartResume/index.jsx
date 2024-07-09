@@ -45,14 +45,18 @@ export const CartResume = () => {
           <p className="items">Itens</p>
           <p className="price">{formatedCurrency(finalPrice)}</p>
           <p className="tax">Taxa de entrega</p>
-          <p className="price-tax">{priceTax}</p>
+          <p className="price-tax">{formatedCurrency(priceTax)}</p>
         </ResumeTop>
         <ResumeBottom>
           <p>Total</p>
           <p>{formatedCurrency(finalPrice + priceTax)}</p>
         </ResumeBottom>
       </Container>
-      <Button onClick={handleClick}>Continuar</Button>
+      {cartProducts && cartProducts.length > 0 ? (
+        <Button onClick={handleClick}>Continuar</Button>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { Login, Register, Home, Products, Cart } from "../pages";
+import { Login, Register, Home, Products, Cart, Admin } from "../pages";
 
 import ErrorPage from "./ErrorPage";
 import PrivateRouter from "./PrivateRoute";
@@ -40,6 +40,14 @@ export const router = createBrowserRouter([
       <PrivateRouter>
         <Header />
         <Cart />
+      </PrivateRouter>
+    ),
+  },
+  {
+    path: "/pedidos",
+    element: (
+      <PrivateRouter isAdmin>
+        <Admin />
       </PrivateRouter>
     ),
   },

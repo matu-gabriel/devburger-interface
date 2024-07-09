@@ -7,7 +7,7 @@ import { useUser } from "../../hooks/UserContext";
 export const Header = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const { logout } = useUser();
+  const { logout, user } = useUser();
 
   const logoutUser = () => {
     logout();
@@ -31,7 +31,7 @@ export const Header = () => {
         <div className="user">
           <PersonOutlineOutlinedIcon color="secondary" fontSize="large" />
           <div>
-            <p>Olá, Matu</p>
+            <p>Olá, {user.name}</p>
             <Link style={{ color: "red" }} onClick={logoutUser}>
               Sair
             </Link>
