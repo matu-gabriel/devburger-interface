@@ -16,12 +16,15 @@ import options from "./selectOrders";
 
 const Order = () => {
   const [orders, setOrders] = useState([]);
+  const [filteredStatus, setFilteredStatus] = useState([]);
+  const [activeStatus, setActiveStatus] = useState(1);
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
     const getOrders = async () => {
       const { data } = await api.get("/orders");
       setOrders(data);
+      setFilteredStatus(data);
     };
 
     getOrders();
@@ -38,17 +41,48 @@ const Order = () => {
   }
 
   useEffect(() => {
-    const newRows = orders.map((order) => createData(order));
+    const newRows = filteredStatus.map((order) => createData(order));
 
     setRows(newRows);
+  }, [filteredStatus]);
+
+  useEffect(() => {
+    if (activeStatus === 1) {
+      setFilteredStatus(filteredStatus);
+    } else {
+      const statusIndex = options.findIndex((opt) => opt.id === activeStatus);
+      const newFilteredStatus = orders.filter(
+        (order) => order.status === options[statusIndex].value
+      );
+
+      setFilteredStatus(newFilteredStatus);
+    }
   }, [orders]);
+
+  const handleStatus = (option) => {
+    if (option.id === 1) {
+      setFilteredStatus(orders);
+    } else {
+      const filterStatus = orders.filter(
+        (order) => order.status === option.value
+      );
+      setFilteredStatus(filterStatus);
+    }
+    setActiveStatus(option.id);
+  };
 
   return (
     <Container>
       <MenuStatus>
         {options &&
           options.map((option) => (
-            <LinkStatus key={option.id}>{option.value}</LinkStatus>
+            <LinkStatus
+              key={option.id}
+              onClick={() => handleStatus(option)}
+              isActive={activeStatus === option.id}
+            >
+              {option.value}
+            </LinkStatus>
           ))}
       </MenuStatus>
       <TableContainer component={Paper}>
@@ -56,15 +90,20 @@ const Order = () => {
           <TableHead>
             <TableRow>
               <TableCell />
-              <TableCell>Pedido</TableCell>
-              <TableCell>Cliente</TableCell>
-              <TableCell>Data do pedido</TableCell>
-              <TableCell>Status</TableCell>
+              <TableCell style={{ fontSize: "20px" }}>Pedido</TableCell>
+              <TableCell style={{ fontSize: "20px" }}>Cliente</TableCell>
+              <TableCell style={{ fontSize: "20px" }}>Data do pedido</TableCell>
+              <TableCell style={{ fontSize: "20px" }}>Status</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((row) => (
-              <Row key={row.orderId} row={row} />
+              <Row
+                key={row.orderId}
+                row={row}
+                setOrders={setOrders}
+                orders={orders}
+              />
             ))}
           </TableBody>
         </Table>

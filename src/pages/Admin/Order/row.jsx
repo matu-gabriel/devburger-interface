@@ -12,13 +12,12 @@ import Typography from "@mui/material/Typography";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useState } from "react";
-import { ProductImage } from "./style";
+import { ProductImage, SelectStatus } from "./style";
 
-import Select from "react-select";
 import options from "./selectOrders";
 import api from "../../../services/api";
 
-const Row = ({ row }) => {
+const Row = ({ row, setOrders, orders }) => {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -26,6 +25,12 @@ const Row = ({ row }) => {
     setIsLoading(true);
     try {
       await api.put(`orders/${id}`, { status });
+
+      const newOrders = orders.map((order) => {
+        return order._id === id ? { ...order, status } : order;
+      });
+
+      setOrders(newOrders);
     } catch (err) {
       console.error(err);
     } finally {
@@ -45,14 +50,14 @@ const Row = ({ row }) => {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row">
+        <TableCell style={{ fontSize: "18px" }} component="th" scope="row">
           {row.orderId}
         </TableCell>
-        <TableCell>{row.name}</TableCell>
-        <TableCell>{row.date}</TableCell>
+        <TableCell style={{ fontSize: "18px" }}>{row.name}</TableCell>
+        <TableCell style={{ fontSize: "18px" }}>{row.date}</TableCell>
         <TableCell>
-          <Select
-            options={options}
+          <SelectStatus
+            options={options.filter((option) => option.value !== "Todos")}
             menuPortalTarget={document.body}
             placeholder="Status"
             defaultValue={
