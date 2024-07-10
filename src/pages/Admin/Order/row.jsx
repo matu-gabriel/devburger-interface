@@ -14,8 +14,25 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useState } from "react";
 import { ProductImage } from "./style";
 
+import Select from "react-select";
+import options from "./selectOrders";
+import api from "../../../services/api";
+
 const Row = ({ row }) => {
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const setNewStatus = async (id, status) => {
+    setIsLoading(true);
+    try {
+      await api.put(`orders/${id}`, { status });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
@@ -33,7 +50,20 @@ const Row = ({ row }) => {
         </TableCell>
         <TableCell>{row.name}</TableCell>
         <TableCell>{row.date}</TableCell>
-        <TableCell>{row.status}</TableCell>
+        <TableCell>
+          <Select
+            options={options}
+            menuPortalTarget={document.body}
+            placeholder="Status"
+            defaultValue={
+              options.find((option) => option.value === row.status) || null
+            }
+            onChange={(newStatus) => {
+              setNewStatus(row.orderId, newStatus.value);
+            }}
+            isLoading={isLoading}
+          />
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>

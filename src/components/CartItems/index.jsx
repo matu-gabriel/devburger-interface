@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 export const CartItems = () => {
   const { cartProducts, increaseQuantity, decreaseQuantity } = useCart();
-  console.log(cartProducts);
   return (
     <Container>
       <HeaderItems>

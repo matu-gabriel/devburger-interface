@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container } from "./style";
+import { Container, MenuStatus, LinkStatus } from "./style";
 import api from "../../../services/api";
 
 import Table from "@mui/material/Table";
@@ -12,6 +12,7 @@ import Paper from "@mui/material/Paper";
 
 import Row from "./row";
 import formatedDate from "../../../utils/formatedDate";
+import options from "./selectOrders";
 
 const Order = () => {
   const [orders, setOrders] = useState([]);
@@ -44,6 +45,12 @@ const Order = () => {
 
   return (
     <Container>
+      <MenuStatus>
+        {options &&
+          options.map((option) => (
+            <LinkStatus key={option.id}>{option.value}</LinkStatus>
+          ))}
+      </MenuStatus>
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
           <TableHead>
