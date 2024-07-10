@@ -85,15 +85,30 @@ const Order = () => {
             </LinkStatus>
           ))}
       </MenuStatus>
-      <TableContainer component={Paper}>
+      <TableContainer
+        component={Paper}
+        style={{ borderTopLeftRadius: "30px", borderTopRightRadius: "30px" }}
+      >
         <Table aria-label="collapsible table">
-          <TableHead>
+          <TableHead
+            style={{
+              backgroundColor: "rgba(51, 50, 50, 1)",
+            }}
+          >
             <TableRow>
               <TableCell />
-              <TableCell style={{ fontSize: "20px" }}>Pedido</TableCell>
-              <TableCell style={{ fontSize: "20px" }}>Cliente</TableCell>
-              <TableCell style={{ fontSize: "20px" }}>Data do pedido</TableCell>
-              <TableCell style={{ fontSize: "20px" }}>Status</TableCell>
+              <TableCell style={{ fontSize: "20px", color: "#fff" }}>
+                Pedido
+              </TableCell>
+              <TableCell style={{ fontSize: "20px", color: "#fff" }}>
+                Cliente
+              </TableCell>
+              <TableCell style={{ fontSize: "20px", color: "#fff" }}>
+                Data do pedido
+              </TableCell>
+              <TableCell style={{ fontSize: "20px", color: "#fff" }}>
+                Status
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
