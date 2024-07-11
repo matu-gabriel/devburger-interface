@@ -1,10 +1,12 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 
 import { Login, Register, Home, Products, Cart, Admin } from "../pages";
 
 import ErrorPage from "./ErrorPage";
 import PrivateRouter from "./PrivateRoute";
 import { Header } from "../components";
+import Order from "../pages/Admin/Order";
+import ListProducts from "../pages/Admin/ListProducts";
 
 export const router = createBrowserRouter([
   {
@@ -50,5 +52,27 @@ export const router = createBrowserRouter([
         <Admin />
       </PrivateRouter>
     ),
+  },
+  {
+    path: "/pedidos",
+    element: (
+      <PrivateRouter isAdmin>
+        <Admin />
+      </PrivateRouter>
+    ),
+    children: [
+      {
+        index: true,
+        element: <Navigate to="produtos" />,
+      },
+      {
+        path: "produtos",
+        element: <Order />,
+      },
+      {
+        path: "listar-produtos",
+        element: <ListProducts />,
+      },
+    ],
   },
 ]);

@@ -14,8 +14,10 @@ export const ContainerLinks = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
-  background-color: rgba(151, 88, 166, 1);
+  background-color: ${(props) =>
+    props.isActive ? "rgba(151, 88, 166, 1)" : "none"};
   padding-left: 20px;
+  margin-bottom: 30px;
 
   .icon {
     color: #fff;

@@ -1,14 +1,14 @@
+import { Outlet } from "react-router-dom";
 import { SideMenuAdmin } from "../../components";
-import ListProducts from "./ListProducts";
-import Order from "./Order";
-import { Container } from "./style";
+import { Container, ContainerItems } from "./style";
 
 export const Admin = () => {
   return (
     <Container>
       <SideMenuAdmin />
-      {/* <Order /> */}
-      <ListProducts />
+      <ContainerItems>
+        <Outlet />
+      </ContainerItems>
     </Container>
   );
 };

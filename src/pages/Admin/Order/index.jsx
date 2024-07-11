@@ -13,8 +13,11 @@ import Paper from "@mui/material/Paper";
 import Row from "./row";
 import formatedDate from "../../../utils/formatedDate";
 import options from "./selectOrders";
+import { useLocation } from "react-router-dom";
 
 const Order = () => {
+  const location = useLocation();
+  console.log(location);
   const [orders, setOrders] = useState([]);
   const [filteredStatus, setFilteredStatus] = useState([]);
   const [activeStatus, setActiveStatus] = useState(1);
@@ -97,16 +100,16 @@ const Order = () => {
           >
             <TableRow>
               <TableCell />
-              <TableCell style={{ fontSize: "20px", color: "#fff" }}>
+              <TableCell style={{ fontSize: "18px", color: "#fff" }}>
                 Pedido
               </TableCell>
-              <TableCell style={{ fontSize: "20px", color: "#fff" }}>
+              <TableCell style={{ fontSize: "18px", color: "#fff" }}>
                 Cliente
               </TableCell>
-              <TableCell style={{ fontSize: "20px", color: "#fff" }}>
+              <TableCell style={{ fontSize: "18px", color: "#fff" }}>
                 Data do pedido
               </TableCell>
-              <TableCell style={{ fontSize: "20px", color: "#fff" }}>
+              <TableCell style={{ fontSize: "18px", color: "#fff" }}>
                 Status
               </TableCell>
             </TableRow>
