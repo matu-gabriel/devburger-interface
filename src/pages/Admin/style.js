@@ -9,4 +9,5 @@ export const Container = styled.div`
 
 export const ContainerItems = styled.div`
   padding: 40px;
+  width: 100%;
 `;

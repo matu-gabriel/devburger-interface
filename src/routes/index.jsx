@@ -7,6 +7,7 @@ import PrivateRouter from "./PrivateRoute";
 import { Header } from "../components";
 import Order from "../pages/Admin/Order";
 import ListProducts from "../pages/Admin/ListProducts";
+import NewProduct from "../pages/Admin/NewProduct";
 
 export const router = createBrowserRouter([
   {
@@ -72,6 +73,10 @@ export const router = createBrowserRouter([
       {
         path: "listar-produtos",
         element: <ListProducts />,
+      },
+      {
+        path: "novo-produto",
+        element: <NewProduct />,
       },
     ],
   },

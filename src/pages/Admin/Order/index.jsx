@@ -13,11 +13,8 @@ import Paper from "@mui/material/Paper";
 import Row from "./row";
 import formatedDate from "../../../utils/formatedDate";
 import options from "./selectOrders";
-import { useLocation } from "react-router-dom";
 
 const Order = () => {
-  const location = useLocation();
-  console.log(location);
   const [orders, setOrders] = useState([]);
   const [filteredStatus, setFilteredStatus] = useState([]);
   const [activeStatus, setActiveStatus] = useState(1);
