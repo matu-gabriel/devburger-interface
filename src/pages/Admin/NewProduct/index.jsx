@@ -1,8 +1,9 @@
-import { Container, Label, Input } from "./style";
+import { Container, Label, Input, ButtonStyle, LabelImage } from "./style";
 import api from "../../../services/api";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ReactSelect from "react-select";
-import { Button } from "../../../components";
+import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
+
 import { useForm } from "react-hook-form";
 
 const NewProduct = () => {
@@ -14,6 +15,7 @@ const NewProduct = () => {
     getProducts();
   }, []);
 
+  const [fileName, setFileName] = useState(null);
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => console.log(data);
 
@@ -24,10 +26,25 @@ const NewProduct = () => {
         <Input type="name" {...register("name")} />
         <Label>Preço</Label>
         <Input type="number" {...register("price")} />
-        <Label>Imagem</Label>
-        <Input type="file" accept="image/png, image/jpeg" />
+        <LabelImage>
+          {fileName || (
+            <>
+              <AddPhotoAlternateOutlinedIcon />
+              Carregar imagem do produto
+            </>
+          )}
+
+          <input
+            type="file"
+            accept="image/png, image/jpeg"
+            {...register("file")}
+            onChange={(value) => {
+              setFileName(value.target.files[0]?.name);
+            }}
+          />
+        </LabelImage>
         <ReactSelect />
-        <Button>Adicionar produto</Button>
+        <ButtonStyle>Adicionar produto</ButtonStyle>
       </form>
     </Container>
   );
