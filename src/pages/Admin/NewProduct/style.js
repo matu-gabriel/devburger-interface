@@ -17,9 +17,10 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.p`
-  font: 18px;
+  font-size: 20px;
   color: #fff;
   margin-bottom: 7px;
+  font-weight: 700;
 `;
 
 export const Input = styled.input`
@@ -28,6 +29,8 @@ export const Input = styled.input`
   border: none;
   border-radius: 5px;
   margin-bottom: 20px;
+  font-size: 18px;
+  padding: 0 10px;
 `;
 
 export const ButtonStyle = styled(Button)`
