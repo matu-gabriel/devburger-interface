@@ -8,6 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { useForm, Controller } from "react-hook-form";
 import { ErrorMessege } from "../../../components/ErrorMessege";
+import { toast } from "react-toastify";
 
 const NewProduct = () => {
   const schema = Yup.object().shape({
@@ -33,13 +34,26 @@ const NewProduct = () => {
   useEffect(() => {
     const getCategories = async () => {
       const { data } = await api.get("categories");
-      console.log(data);
       setCategories(data);
     };
     getCategories();
   }, []);
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    const productFormData = new FormData();
+
+    productFormData.append("name", data.name);
+    productFormData.append("price", data.price);
+    productFormData.append("category_id", data.category.id);
+    productFormData.append("file", data.file[0]);
+
+    await toast.promise(api.post("products", productFormData), {
+      pending: "Criando produto...",
+      success: "Produto criado com sucesso",
+      error: "Falha ao criar produto, tente novamente",
+    });
+  };
+
   return (
     <Container>
       <form noValidate onSubmit={handleSubmit(onSubmit)}>

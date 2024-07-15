@@ -24,7 +24,7 @@ export const SideMenuAdmin = () => {
         ))}
       <ContainerLinks
         style={{
-          position: "absolute",
+          position: "fixed",
           bottom: "20px",
           backgroundColor: "transparent",
         }}

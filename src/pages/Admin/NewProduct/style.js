@@ -31,6 +31,7 @@ export const Input = styled.input`
   /* margin-bottom: 20px; */
   font-size: 18px;
   padding: 0 10px;
+  outline: none;
 `;
 
 export const ButtonStyle = styled(Button)`
