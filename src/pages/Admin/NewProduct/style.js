@@ -28,7 +28,7 @@ export const Input = styled.input`
   width: 100%;
   border: none;
   border-radius: 5px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   font-size: 18px;
   padding: 0 10px;
 `;
@@ -46,7 +46,7 @@ export const LabelImage = styled.label`
   border: 1px dashed #fff;
   border-radius: 5px;
   padding: 10px;
-  margin: 20px 0;
+  /* margin: 20px 0; */
   color: #fff;
 
   input {
