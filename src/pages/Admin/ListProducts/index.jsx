@@ -12,9 +12,12 @@ import Paper from "@mui/material/Paper";
 
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
+import { Modal } from "../../../components";
 
 const ListProducts = () => {
   const [products, setProducts] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [modalProducts, setModalProducts] = useState(null);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -29,6 +32,16 @@ const ListProducts = () => {
       return <CheckCircleIcon style={{ color: "rgba(14, 146, 27, 1)" }} />;
     }
     return <CancelIcon style={{ color: "rgba(158, 28, 0, 1)" }} />;
+  };
+
+  const handleOpenModal = (product) => {
+    setModalProducts(product);
+    setShowModal(true);
+  };
+
+  const handleClosedModal = () => {
+    setModalProducts(null);
+    setShowModal(false);
   };
 
   return (
@@ -93,13 +106,18 @@ const ListProducts = () => {
                     />
                   </TableCell>
                   <TableCell>
-                    <EditIconStyle />
+                    <EditIconStyle onClick={() => handleOpenModal(product)} />
                   </TableCell>
                 </TableRow>
               ))}
           </TableBody>
         </Table>
       </TableContainer>
+      <Modal
+        show={showModal}
+        onClose={handleClosedModal}
+        product={modalProducts}
+      />
     </Container>
   );
 };
