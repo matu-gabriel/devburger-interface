@@ -46,14 +46,7 @@ export const router = createBrowserRouter([
       </PrivateRouter>
     ),
   },
-  {
-    path: "/pedidos",
-    element: (
-      <PrivateRouter isAdmin>
-        <Admin />
-      </PrivateRouter>
-    ),
-  },
+
   {
     path: "/pedidos",
     element: (
