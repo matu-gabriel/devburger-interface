@@ -1,16 +1,30 @@
-import { Container, LeftBox, RightBox, Title, Form, InputBox } from "./styles";
+import {
+  Container,
+  LeftBox,
+  RightBox,
+  Title,
+  Form,
+  InputBox,
+  Link,
+} from "./styles";
 import Logo from "../../assets/Logo.svg";
-import { Button } from "../../components/Button";
+import { Button } from "../../components";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
 
-import { api } from "../../services/api";
+import api from "../../services/api";
 
 import { toast } from "react-toastify";
 
-const Login = () => {
+import { useUser } from "../../hooks/UserContext";
+
+export const Login = () => {
+  const { infoUser } = useUser();
+  const navigate = useNavigate();
+
   const schema = yup
     .object({
       email: yup
@@ -31,20 +45,27 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = async (data) => {
-    const response = await toast.promise(
+  const onSubmit = async (info) => {
+    const { data } = await toast.promise(
       api.post("/session", {
-        email: data.email,
-        password: data.password,
+        email: info.email,
+        password: info.password,
       }),
       {
         pending: "Verificando dados",
-        success: "Seja bem-vindo(a)",
+        success: {
+          render() {
+            setTimeout(() => {
+              navigate("/");
+            }, 2000);
+            return "Seja bem-vindo(a)";
+          },
+        },
         error: "Email ou senha incorretos",
       }
     );
 
-    console.log(response);
+    infoUser(data);
   };
 
   return (
@@ -71,11 +92,9 @@ const Login = () => {
           <Button type="submit">Entrar</Button>
         </Form>
         <p>
-          Não possui conta? <a href="#">Clique aqui</a>.
+          Não possui conta? <Link to="/cadastro">Clique aqui</Link>.
         </p>
       </RightBox>
     </Container>
   );
 };
-
-export default Login;

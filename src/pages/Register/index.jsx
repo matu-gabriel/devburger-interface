@@ -1,16 +1,28 @@
-import { Container, LeftBox, RightBox, Title, Form, InputBox } from "./styles";
+import {
+  Container,
+  LeftBox,
+  RightBox,
+  Title,
+  Form,
+  InputBox,
+  Link,
+} from "./styles";
 import Logo from "../../assets/Logo.svg";
-import { Button } from "../../components/Button";
+import { Button } from "../../components";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import { api } from "../../services/api";
+import api from "../../services/api";
 
 import { toast } from "react-toastify";
 
-const Register = () => {
+import { useNavigate } from "react-router-dom";
+
+export const Register = () => {
+  const navigate = useNavigate();
+
   const schema = yup
     .object({
       name: yup.string().required("O nome é obrigatorio"),
@@ -51,6 +63,9 @@ const Register = () => {
       );
 
       if (status === 200 || status === 201) {
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
         toast.success("Cadastro realizado com sucesso");
       } else if (status === 409) {
         toast.error("Email já cadastrado! Faça o login.");
@@ -93,11 +108,9 @@ const Register = () => {
           <Button type="submit">Cadastrar</Button>
         </Form>
         <p>
-          Já possui conta? <a href="#">Clique aqui</a>.
+          Já possui conta? <Link to="/login">Clique aqui</Link>.
         </p>
       </RightBox>
     </Container>
   );
 };
-
-export default Register;
