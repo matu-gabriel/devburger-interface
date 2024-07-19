@@ -25,7 +25,6 @@ export const Header = () => {
           Produtos
         </StyledLink>
         <div></div>
-        <StyledLink to="*">Contatos</StyledLink>
       </ContainerLeft>
       <ContainerRight>
         <div className="user">
