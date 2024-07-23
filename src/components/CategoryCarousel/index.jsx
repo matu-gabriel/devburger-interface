@@ -14,6 +14,8 @@ export const CategoryCarousel = () => {
     loadCategories();
   }, []);
 
+  console.log(categories);
+
   const breakpoints = [
     { width: 1, itemsToShow: 1 },
     { width: 550, itemsToShow: 2, itemsToScroll: 2 },

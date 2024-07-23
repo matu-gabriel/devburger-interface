@@ -8,6 +8,7 @@ import { Header } from "../components";
 import Order from "../pages/Admin/Order";
 import ListProducts from "../pages/Admin/ListProducts";
 import NewProduct from "../pages/Admin/NewProduct";
+import NewCategory from "../pages/Admin/NewCategory";
 
 export const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
       {
         path: "novo-produto",
         element: <NewProduct />,
+      },
+      {
+        path: "nova-categoria",
+        element: <NewCategory />,
       },
     ],
   },

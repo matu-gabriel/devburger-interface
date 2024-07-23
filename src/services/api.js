@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://devburger-api-final-production.up.railway.app/",
+  baseURL: "http://localhost:3001/",
+  // baseURL: "https://devburger-api-final-production.up.railway.app/",
 });
 
 api.interceptors.request.use(async (config) => {
